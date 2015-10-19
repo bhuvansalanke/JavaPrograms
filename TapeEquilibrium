@@ -1,0 +1,26 @@
+class Solution {
+  public int solution(int[] A) {
+      int[] sums = new int[A.length];
+  
+      for (int i = 1; i < sums.length; i++) {
+          sums[i] = sums[i - 1] + A[i - 1];
+      }
+  
+      int total = sums[sums.length - 1] + A[A.length - 1];
+  
+      int min = Integer.MAX_VALUE;
+      for (int i = 0; i < sums.length; i++) {
+  
+          int diff = Math.abs((total - sums[i]) - sums[i]);
+  
+          if (diff == 0) {
+              return 0;
+          }
+  
+          if (diff < min) {
+              min = diff;
+          }
+      }
+      return min;
+  }
+}
